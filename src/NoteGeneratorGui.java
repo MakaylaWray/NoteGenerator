@@ -44,6 +44,10 @@ public class NoteGeneratorGui {
     private JButton pendOutreachStatusPanelContinueButton;
     private JPanel panelContainer;
     private JTextField veriProvidersTextField;
+    private JTextField destInfoTextField;
+    private JLabel destInfoLabel;
+    private JLabel destAttnLabel;
+    private JTextField destAttnTextField;
 
     public NoteGeneratorGui() {
         //Add ActionLister to Continue Button on LoginPanel
@@ -66,17 +70,53 @@ public class NoteGeneratorGui {
                     mainPanel.add(verificationPanel);
                     mainPanel.repaint();
                     mainPanel.revalidate();
-
-                    //Automatically set all fields to N/A
-                    veriChartsNaButton.setSelected(true);
-                    unverifiedChartsNaButton.setSelected(true);
-                    veriProvidersNaButton.setSelected(true);
-                    unveriProvidersNaButton.setSelected(true);
-                    siteAddressNaButton.setSelected(true);
-                    destiMethodNaButton.setSelected(true);
                 }
             }
         });
+
+        //Add ActionLister to the Back Button of the Verification JPanel
+        veriPanelBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();
+                mainPanel.add(pendCodePanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
+        //Adds an action listener to the drop down box for destination method
+        destMethodDropDownBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object selectedObject = destMethodDropDownBox.getSelectedItem();
+                if (selectedObject == "Fax"){
+                    destInfoLabel.setVisible(true);
+                    destInfoTextField.setVisible(true);
+                    destAttnLabel.setVisible(true);
+                    destAttnTextField.setVisible(true);
+                    destInfoLabel.setText("Fax Number");
+                } else if (selectedObject == "Mail") {
+                    destInfoLabel.setVisible(true);
+                    destInfoTextField.setVisible(true);
+                    destAttnLabel.setVisible(true);
+                    destAttnTextField.setVisible(true);
+                    destInfoLabel.setText("Mailing Address");
+                } else if (selectedObject == "Email") {
+                    destInfoLabel.setVisible(true);
+                    destInfoTextField.setVisible(true);
+                    destAttnLabel.setVisible(true);
+                    destAttnTextField.setVisible(true);
+                    destInfoLabel.setText("Email Address");
+                }
+                else{
+                    destInfoLabel.setVisible(false);
+                    destInfoTextField.setVisible(false);
+                    destAttnLabel.setVisible(false);
+                    destAttnTextField.setVisible(false);
+                }
+            }
+        });
+
     }
 
     public static void main(String[] args) {
