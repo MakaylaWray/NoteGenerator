@@ -119,7 +119,16 @@ public class NoteGeneratorGui {
                 }
             }
         });
-
+        //Add ActionListener to the continue button on the verification panel
+        veriPanelContButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();
+                mainPanel.add(pendOutreachStatusPanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
     }
 
     public static void main(String[] args) {
