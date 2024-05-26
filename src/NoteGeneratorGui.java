@@ -2,8 +2,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import HelperMethods.DateFormatter;
+import HelperMethods.NoteFormatter;
 
 public class NoteGeneratorGui {
+
+    //TODO Some Variables will need to be stored at at certain frames. See MSID for examples
+
     private String currentDate = DateFormatter.formattedDate();
     private JPanel mainPanel;
     private JPanel loginPanel;
@@ -12,13 +16,19 @@ public class NoteGeneratorGui {
     private JPanel pendOutreachStatusPanel;
     private JPanel finalPendNotePanel;
     private JTextField msidTextField;
+    private String msid;
     private JLabel loginPanelHeader;
     private JComboBox pendCodeDropDownBox;
+    private Object selectedPendOption;
     private JLabel pendCodePanelLabel;
     private JTextField unveriChartsTextField;
+    private String unveriCharts = unveriChartsTextField.getText();
     private JTextField veriChartsTextField;
+    private String veriCharts = veriChartsTextField.getText();
     private JTextField unveriProvidersTextField;
+    private String unveriProviders = unveriProvidersTextField.getText();
     private JTextField siteAddressTextField;
+    private String siteAddress = siteAddressTextField.getText();
     private JComboBox destMethodDropDownBox;
     private JLabel veriChartsLabel;
     private JLabel unveriChartsLabel;
@@ -26,6 +36,8 @@ public class NoteGeneratorGui {
     private JLabel unveriProvidersLabel;
     private JLabel siteAddressLabel;
     private JLabel destiMethodLabel;
+    private JTextField veriProvidersTextField;
+    private String veriProviders = veriProvidersTextField.getText();
     private JButton veriPanelBackButton;
     private JButton veriPanelContButton;
     private JRadioButton veriChartsNaButton;
@@ -44,7 +56,6 @@ public class NoteGeneratorGui {
     private JButton pendOutreachStatusPanelBackButton;
     private JButton pendOutreachStatusPanelContinueButton;
     private JPanel panelContainer;
-    private JTextField veriProvidersTextField;
     private JTextField destInfoTextField;
     private JLabel destInfoLabel;
     private JLabel destAttnLabel;
@@ -55,18 +66,22 @@ public class NoteGeneratorGui {
         loginPanelContButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               mainPanel.removeAll();
-               mainPanel.add(pendCodePanel);
-               mainPanel.repaint();
-               mainPanel.revalidate();;
+                msid = msidTextField.getText();
+                mainPanel.removeAll();
+                mainPanel.add(pendCodePanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();;
             }
         });
         // Add ActionListener to Continue Button on PendCodePanel
         pendCodePanelContButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object selectedOption = pendCodeDropDownBox.getSelectedItem();
-                if (selectedOption == "Pend001"){
+                selectedPendOption = pendCodeDropDownBox.getSelectedItem();
+
+                //TODO Specific frames will need to be added based on the pend code selected.
+
+                if (selectedPendOption == "Pend001"){
                     mainPanel.removeAll();
                     mainPanel.add(verificationPanel);
                     mainPanel.repaint();
@@ -140,6 +155,12 @@ public class NoteGeneratorGui {
                 mainPanel.add(finalPendNotePanel);
                 mainPanel.repaint();
                 mainPanel.revalidate();
+
+                //TODO finish adding the parameters needed to complete the NoteFormatter
+
+                NoteFormatter newNote = new NoteFormatter(msid, currentDate,selectedPendOption);
+                String formattedText = newNote.formattedNote();
+                pendNoteTextBox.setText(formattedText);
             }
         });
 
