@@ -1,15 +1,17 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import HelperMethods.DateFormatter;
 
 public class NoteGeneratorGui {
+    private String currentDate = DateFormatter.formattedDate();
     private JPanel mainPanel;
     private JPanel loginPanel;
     private JPanel pendCodePanel;
     private JPanel verificationPanel;
     private JPanel pendOutreachStatusPanel;
     private JPanel finalPendNotePanel;
-    private JTextField textField1;
+    private JTextField msidTextField;
     private JLabel loginPanelHeader;
     private JComboBox pendCodeDropDownBox;
     private JLabel pendCodePanelLabel;
@@ -151,6 +153,8 @@ public class NoteGeneratorGui {
                 mainPanel.revalidate();
             }
         });
+
+
     }
 
     public static void main(String[] args) {
