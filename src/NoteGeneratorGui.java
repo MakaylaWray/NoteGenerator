@@ -49,7 +49,7 @@ public class NoteGeneratorGui {
     private JTextField destAttnTextField;
 
     public NoteGeneratorGui() {
-        //Add ActionLister to Continue Button on LoginPanel
+        //Add ActionListener to Continue Button on LoginPanel
         loginPanelContButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +59,7 @@ public class NoteGeneratorGui {
                mainPanel.revalidate();;
             }
         });
-        // Add ActionLister to Continue Button on PendCodePanel
+        // Add ActionListener to Continue Button on PendCodePanel
         pendCodePanelContButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,7 +73,7 @@ public class NoteGeneratorGui {
             }
         });
 
-        //Add ActionLister to the Back Button of the Verification JPanel
+        //Add ActionListener to the Back Button of the Verification JPanel
         veriPanelBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
