@@ -130,12 +130,23 @@ public class NoteGeneratorGui {
             }
         });
 
-        //Add ActionListener to the Continue Button on Pend Outreach Status Frame
+        //Add ActionListener to the Continue Button on the Pend Outreach Status Frame
         pendOutreachStatusPanelContinueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainPanel.removeAll();
                 mainPanel.add(finalPendNotePanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
+
+        //Add ActionListener to the Back button on the Pend Outreach Status Frame
+        pendOutreachStatusPanelBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();;
+                mainPanel.add(verificationPanel);
                 mainPanel.repaint();
                 mainPanel.revalidate();
             }
