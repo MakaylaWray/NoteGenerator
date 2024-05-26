@@ -129,6 +129,17 @@ public class NoteGeneratorGui {
                 mainPanel.revalidate();
             }
         });
+
+        //Add ActionListener to the Continue Button on Pend Outreach Status Frame
+        pendOutreachStatusPanelContinueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();
+                mainPanel.add(finalPendNotePanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
     }
 
     public static void main(String[] args) {
