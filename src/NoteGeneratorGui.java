@@ -31,7 +31,6 @@ public class NoteGeneratorGui {
     private JRadioButton veriProvidersNaButton;
     private JRadioButton unveriProvidersNaButton;
     private JRadioButton siteAddressNaButton;
-    private JRadioButton destiMethodNaButton;
     private JLabel finalPendNoteHeader;
     private JTextArea pendNoteTextBox;
     private JButton finalPendNoteBackButton;
@@ -84,9 +83,13 @@ public class NoteGeneratorGui {
                 mainPanel.revalidate();
             }
         });
-        //Adds an action listener to the drop down box for destination method
+        //Adds an action listener to the drop-down box for destination method
         destMethodDropDownBox.addActionListener(new ActionListener() {
             @Override
+            /**
+             * For each destination method selected, the appropiate label will show.
+             * The Destination attn and info field is not visible when "No Provider Pacakge is selected"
+             */
             public void actionPerformed(ActionEvent e) {
                 Object selectedObject = destMethodDropDownBox.getSelectedItem();
                 if (selectedObject == "Fax"){
