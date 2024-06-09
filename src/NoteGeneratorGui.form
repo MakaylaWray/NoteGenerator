@@ -379,6 +379,149 @@
               </component>
             </children>
           </grid>
+          <grid id="39160" binding="pend2VerificationPanel" layout-manager="GridLayoutManager" row-count="7" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="Card6"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a8e1a" class="javax.swing.JLabel" binding="didProviderAgree">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Agreed to Send Charts?"/>
+                </properties>
+              </component>
+              <component id="d6b18" class="javax.swing.JRadioButton" binding="agreedRadioButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Yes"/>
+                </properties>
+              </component>
+              <component id="59f24" class="javax.swing.JRadioButton" binding="refusedRadioButton">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="No"/>
+                </properties>
+              </component>
+              <component id="521e7" class="javax.swing.JLabel" binding="pend2ConfirmedAddress">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Confirmed Site Address"/>
+                </properties>
+              </component>
+              <component id="3038" class="javax.swing.JTextField" binding="pend2SiteAddressEntry">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="cbcda" class="javax.swing.JLabel" binding="pend2DestinationLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Destination Method"/>
+                </properties>
+              </component>
+              <component id="732f2" class="javax.swing.JLabel" binding="pend2destinationEntryLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Fax Number"/>
+                </properties>
+              </component>
+              <component id="7a37" class="javax.swing.JComboBox" binding="pend2DestinationDropdown">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Fax"/>
+                    <item value="Email"/>
+                    <item value="Mail"/>
+                    <item value="No Provider Package"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="145c8" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="74015" class="javax.swing.JTextField" binding="pend2AttnEntry">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="cc570" class="javax.swing.JLabel" binding="pend2AttnLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Attn"/>
+                </properties>
+              </component>
+              <component id="80e3d" class="javax.swing.JButton" binding="pend2BackButton">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Back"/>
+                </properties>
+              </component>
+              <component id="bc869" class="javax.swing.JButton" binding="pend2ContinueButton">
+                <constraints>
+                  <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Continue"/>
+                </properties>
+              </component>
+              <component id="bc9a5" class="javax.swing.JLabel" binding="pend2ReturnMethod">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Retrieval Method"/>
+                </properties>
+              </component>
+              <component id="f25e8" class="javax.swing.JComboBox" binding="pend2RetirevalMethodDropdown">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Fax"/>
+                    <item value="Mail"/>
+                    <item value="Email"/>
+                    <item value="Provider Portal"/>
+                    <item value="Datavant/Ciox"/>
+                    <item value="Onsite Tech"/>
+                    <item value="EMR Remote Access"/>
+                  </model>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

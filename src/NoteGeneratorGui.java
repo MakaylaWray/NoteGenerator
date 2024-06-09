@@ -60,6 +60,22 @@ public class NoteGeneratorGui {
     private JLabel destInfoLabel;
     private JLabel destAttnLabel;
     private JTextField destAttnTextField;
+    private JPanel pend2VerificationPanel;
+    private JRadioButton agreedRadioButton;
+    private JRadioButton refusedRadioButton;
+    private JTextField pend2SiteAddressEntry;
+    private JLabel didProviderAgree;
+    private JLabel pend2ConfirmedAddress;
+    private JLabel pend2DestinationLabel;
+    private JComboBox pend2DestinationDropdown;
+    private JTextField textField1;
+    private JLabel pend2destinationEntryLabel;
+    private JTextField pend2AttnEntry;
+    private JLabel pend2AttnLabel;
+    private JButton pend2BackButton;
+    private JButton pend2ContinueButton;
+    private JLabel pend2ReturnMethod;
+    private JComboBox pend2RetirevalMethodDropdown;
 
     public NoteGeneratorGui() {
         //Add ActionListener to Continue Button on LoginPanel
@@ -84,6 +100,11 @@ public class NoteGeneratorGui {
                 if (selectedPendOption == "Pend001"){
                     mainPanel.removeAll();
                     mainPanel.add(verificationPanel);
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
+                } else if (selectedPendOption == "Pend002") {
+                    mainPanel.removeAll();
+                    mainPanel.add(pend2VerificationPanel);
                     mainPanel.repaint();
                     mainPanel.revalidate();
                 }
@@ -175,7 +196,16 @@ public class NoteGeneratorGui {
             }
         });
 
-
+        //Add ActionListioner to the Continue button on the Pend002 Verification Frame
+        pend2ContinueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.removeAll();
+                mainPanel.add(pendOutreachStatusPanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -185,4 +215,6 @@ public class NoteGeneratorGui {
         frame.pack();
         frame.setVisible(true);
     }
+
+
 }

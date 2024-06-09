@@ -13,6 +13,11 @@ public class NoteFormatter {
     }
     //TODO Specific formatted note templates will need to be add because certain pend codes have different templates
     public String formattedNote(){
-        return this.msid;
+        if (userPendCode == "Pend 001") {
+            return this.msid + " " + this.date;
+        }
+        else{
+            return "Different Code selected";
+        }
     }
 }
