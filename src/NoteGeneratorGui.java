@@ -2,12 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import HelperMethods.DateFormatter;
-import HelperMethods.NoteFormatter;
 
 public class NoteGeneratorGui {
-
-    //TODO Some Variables will need to be stored at at certain frames. See MSID for examples
-
     private String currentDate = DateFormatter.formattedDate();
     private JPanel mainPanel;
     private JPanel loginPanel;
@@ -20,7 +16,16 @@ public class NoteGeneratorGui {
     private JLabel loginPanelHeader;
     private JComboBox pendCodeDropDownBox;
     private Object selectedPendOption;
+    private String outreachid;
+    private JTextField outreachIdEntryField;
+    private JLabel outreachIdLabel;
     private JLabel pendCodePanelLabel;
+    private JTextField phoneNumberEntryBox;
+    private String phoneNumber;
+    private JLabel phoneNumberLabel;
+    private JTextField pend001SpokeToEntryBox;
+    private JLabel pend1SpokeToLabel;
+    private String spokeTo;
     private JTextField unveriChartsTextField;
     private String unveriCharts = unveriChartsTextField.getText();
     private JTextField veriChartsTextField;
@@ -51,6 +56,7 @@ public class NoteGeneratorGui {
     private JButton finalPendNoteNewButton;
     private JButton loginPanelContButton;
     private JButton pendCodePanelContButton;
+    private Object pendOutreachStatus;
     private JComboBox pendOutreachStatusPanelDropDownBox;
     private JLabel pendOutreachStatusPanelHeader;
     private JButton pendOutreachStatusPanelBackButton;
@@ -76,6 +82,11 @@ public class NoteGeneratorGui {
     private JButton pend2ContinueButton;
     private JLabel pend2ReturnMethod;
     private JComboBox pend2RetirevalMethodDropdown;
+    private Boolean isProviderVerifiedEmpty = true;
+    private Boolean isChartsVerifiedEmpty = true;
+    private Boolean isProviderUnverifiedEmpty = true;
+    private Boolean isChartsUnverifiedEmpty = true;
+    private Boolean isMemberVerifiedEmpty = true;
 
     public NoteGeneratorGui() {
         //Add ActionListener to Continue Button on LoginPanel
@@ -86,7 +97,8 @@ public class NoteGeneratorGui {
                 mainPanel.removeAll();
                 mainPanel.add(pendCodePanel);
                 mainPanel.repaint();
-                mainPanel.revalidate();;
+                mainPanel.revalidate();
+                ;
             }
         });
         // Add ActionListener to Continue Button on PendCodePanel
@@ -94,15 +106,16 @@ public class NoteGeneratorGui {
             @Override
             public void actionPerformed(ActionEvent e) {
                 selectedPendOption = pendCodeDropDownBox.getSelectedItem();
-
-                //TODO Specific frames will need to be added based on the pend code selected.
-
-                if (selectedPendOption == "Pend001"){
+                if (selectedPendOption == "Pend001") {
+                    outreachid = outreachIdEntryField.getText();
+                    phoneNumber = phoneNumberEntryBox.getText();
                     mainPanel.removeAll();
                     mainPanel.add(verificationPanel);
                     mainPanel.repaint();
                     mainPanel.revalidate();
                 } else if (selectedPendOption == "Pend002") {
+                    outreachid = outreachIdEntryField.getText();
+                    phoneNumber = phoneNumberEntryBox.getText();
                     mainPanel.removeAll();
                     mainPanel.add(pend2VerificationPanel);
                     mainPanel.repaint();
@@ -130,7 +143,7 @@ public class NoteGeneratorGui {
              */
             public void actionPerformed(ActionEvent e) {
                 Object selectedObject = destMethodDropDownBox.getSelectedItem();
-                if (selectedObject == "Fax"){
+                if (selectedObject == "Fax") {
                     destInfoLabel.setVisible(true);
                     destInfoTextField.setVisible(true);
                     destAttnLabel.setVisible(true);
@@ -148,8 +161,7 @@ public class NoteGeneratorGui {
                     destAttnLabel.setVisible(true);
                     destAttnTextField.setVisible(true);
                     destInfoLabel.setText("Email Address");
-                }
-                else{
+                } else {
                     destInfoLabel.setVisible(false);
                     destInfoTextField.setVisible(false);
                     destAttnLabel.setVisible(false);
@@ -161,6 +173,24 @@ public class NoteGeneratorGui {
         veriPanelContButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (veriProvidersTextField.getText().length() > 0) {
+                    isProviderVerifiedEmpty = false;
+                }
+                if (unveriProvidersTextField.getText().length() > 0) {
+                    isProviderUnverifiedEmpty = false;
+                }
+                if (veriChartsTextField.getText().length() > 0) {
+                    isChartsVerifiedEmpty = false;
+                }
+                if (unveriChartsTextField.getText().length() > 0) {
+                    isChartsUnverifiedEmpty = false;
+                }
+                veriProviders = veriProvidersTextField.getText();
+                veriCharts = veriChartsTextField.getText();
+                unveriProviders = unveriProvidersTextField.getText();
+                unveriCharts = unveriChartsTextField.getText();
+
+                spokeTo = pend001SpokeToEntryBox.getText();
                 mainPanel.removeAll();
                 mainPanel.add(pendOutreachStatusPanel);
                 mainPanel.repaint();
@@ -172,16 +202,13 @@ public class NoteGeneratorGui {
         pendOutreachStatusPanelContinueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pendOutreachStatus = pendOutreachStatusPanelDropDownBox.getSelectedItem();
                 mainPanel.removeAll();
                 mainPanel.add(finalPendNotePanel);
                 mainPanel.repaint();
                 mainPanel.revalidate();
 
-                //TODO finish adding the parameters needed to complete the NoteFormatter
-
-                NoteFormatter newNote = new NoteFormatter(msid, currentDate,selectedPendOption);
-                String formattedText = newNote.formattedNote();
-                pendNoteTextBox.setText(formattedText);
+                pendNoteTextBox.setText(pendNoteParts());
             }
         });
 
@@ -189,7 +216,7 @@ public class NoteGeneratorGui {
         pendOutreachStatusPanelBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainPanel.removeAll();;
+                mainPanel.removeAll();
                 mainPanel.add(verificationPanel);
                 mainPanel.repaint();
                 mainPanel.revalidate();
@@ -206,8 +233,60 @@ public class NoteGeneratorGui {
                 mainPanel.revalidate();
             }
         });
+        //Add Action Listoner to the Back Button on the PendOutreach Frame
+        finalPendNoteBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isChartsUnverifiedEmpty= true;
+                isChartsVerifiedEmpty= true;
+                isProviderVerifiedEmpty= true;
+                isProviderUnverifiedEmpty= true;
+                mainPanel.removeAll();
+                mainPanel.add(verificationPanel);
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
+    }
+    public String pendNoteParts(){
+        String goal;
+        String providerPackage;
+        String retrievalMethod;
+        if (pendOutreachStatus == "Made Contact with Provider"){
+            if (selectedPendOption == "Pend001"){
+                goal = providerVerification() + " "+ memberVerification();
+                return goal;
+            }
+        }
+        return "Another option selected";
     }
 
+    public String providerVerification() {
+        if (isProviderVerifiedEmpty == true && isProviderUnverifiedEmpty == true) {
+            return " ";
+        } else if (isProviderVerifiedEmpty == false && isProviderUnverifiedEmpty == true) {
+            return "Verified the provider(s): " + veriProviders + " at this location. ";
+        } else if (isProviderVerifiedEmpty == true && isProviderUnverifiedEmpty == false) {
+            return "Unable to verify the provider(s): " + unveriProviders + " at this location. ";
+        }
+        else {
+            return "Verified the provider(s): " + veriProviders + " at this location. Unable to verify the provider(s): " + unveriProviders;
+        }
+    }
+    public String memberVerification(){
+        if (isChartsVerifiedEmpty == true && isChartsUnverifiedEmpty == true){
+            return " ";
+        }
+        else if (isChartsVerifiedEmpty == false  && isChartsUnverifiedEmpty == true) {
+            return "Verified the chart id(s): " + veriCharts + "DOS/at this location. ";
+        }
+        else if (isChartsVerifiedEmpty == true && isChartsUnverifiedEmpty == false){
+            return "Unable to verify the chartid(s): " + unveriCharts + " DOS/at this location. ";
+        }
+        else{
+            return "Verified the chartid(s): " + veriCharts + " DOS/at this location. Unable to verify the chartid(s): " + unveriCharts;
+        }
+    }
     public static void main(String[] args) {
         JFrame frame = new JFrame("NoteGenerator");
         frame.setContentPane(new NoteGeneratorGui().mainPanel);
@@ -215,6 +294,6 @@ public class NoteGeneratorGui {
         frame.pack();
         frame.setVisible(true);
     }
-
-
 }
+
+
